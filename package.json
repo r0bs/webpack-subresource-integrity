@@ -92,7 +92,12 @@
     "jmtp.js"
   ],
   "nyc": {
-    "exclude": ["coverage/**", "test/**", "examples/**", "**/node_modules/**"]
+    "exclude": [
+      "coverage/**",
+      "test/**",
+      "examples/**",
+      "**/node_modules/**"
+    ]
   },
   "prettier": {
     "singleQuote": true

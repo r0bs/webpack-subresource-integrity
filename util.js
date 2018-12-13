@@ -65,6 +65,10 @@ function getTagSrc(tag) {
   return tag.attributes.href || tag.attributes.src;
 }
 
+function hasUrlScheme(src) {
+  return src.indexOf("https://") === 0 || src.indexOf("https://") === 0 || src.indexOf("//") === 0
+}
+
 function filterTag(tag) {
   // Process only script and link tags with a url
   return (tag.tagName === "script" || tag.tagName === "link") && getTagSrc(tag);
@@ -106,6 +110,7 @@ module.exports.computeIntegrity = computeIntegrity;
 module.exports.findChunks = findChunks;
 module.exports.filterTag = filterTag;
 module.exports.getTagSrc = getTagSrc;
+module.exports.hasUrlScheme = hasUrlScheme;
 module.exports.normalizePath = normalizePath;
 module.exports.getIntegrityChecksumForAsset = getIntegrityChecksumForAsset;
 module.exports.isRuntimeChunk = isRuntimeChunk;

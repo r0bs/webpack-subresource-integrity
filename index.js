@@ -265,10 +265,12 @@ SubresourceIntegrityPlugin.prototype.processTag =
     var src = this.hwpAssetPath(util.getTagSrc(tag));
     /* eslint-disable no-param-reassign */
     var integrity = util.getIntegrityChecksumForAsset(compilation.assets, src);
-    if (!Object.prototype.hasOwnProperty.call(tag.attributes, "integrity")) {
-      tag.attributes.integrity = integrity;
-      tag.attributes.crossorigin = compilation.compiler.options.output.crossOriginLoading || 'anonymous';
+    if (util.hasUrlScheme(util.getTagSrc(tag))) {
+      return this.warnOnce(compilation, 'External resource from "' + util.getTagSrc(tag) +
+        '" does not have an integrity attribute. Consider adding it manually.');
     }
+    tag.attributes.integrity = integrity;
+    tag.attributes.crossorigin = compilation.compiler.options.output.crossOriginLoading || 'anonymous';
     /* eslint-enable no-param-reassign */
   };
 
